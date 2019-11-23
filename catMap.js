@@ -38,7 +38,7 @@ Promise.all([dogPromise, catPromise, humanPromise])
                    console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
                    setBanner("Data has failed to load");
                    })
-                   */
+                   
 
 //Over all screen size//
 
@@ -48,6 +48,7 @@ var margins = {top: 10, right: 50, bottom: 50, left: 25}
 //map info//
 
 projections = d3.geoMollweide()
+*/
 
 
 
