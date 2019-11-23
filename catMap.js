@@ -8,11 +8,11 @@ var setBanner = function(message)
 //Promise which includes setup call//
 
 var mapPromise= d3.json("custom.geo.json")
-           penguinePromise.then(function(data)
+           mapPromise.then(function(data)
                    {
                      console.log("here");
                      setBanner("Penguin Quizzes");
-                     setup(data);
+                  
                    }, 
                    function(err)
                    {
