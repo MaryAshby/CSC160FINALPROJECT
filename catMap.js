@@ -10,7 +10,7 @@ var setBanner = function(message)
 var dogPromise = d3.json("PUT IN DATA.json");
 var catPromise = d3.json("PUT IN DATA.json");
 var humanPromise = d3.json("PUT IN DATA.json");
-var mapPromise = d3.json("PUT IN DATA.json");
+var mapPromise = d3.json("custom.geo.json");
 
 Promise.all([dogPromise, catPromise, humanPromise])
        .then(function(data)
