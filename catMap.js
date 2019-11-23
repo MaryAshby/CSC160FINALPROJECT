@@ -7,21 +7,7 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var mapPromise= d3.json("custom.geo.json")
-           mapPromise.then(function(data)
-                   {
-                     console.log("here");
-                     setBanner("Penguin Quizzes");
-                  
-                   }, 
-                   function(err)
-                   {
-                   console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
-                   setBanner("Penguins Ditched the Test");
-                   })
-
-
-/*var dogPromise = d3.json("PUT IN DATA.json");
+var dogPromise = d3.json("PUT IN DATA.json");
 var catPromise = d3.json("PUT IN DATA.json");
 var humanPromise = d3.json("PUT IN DATA.json");
 var mapPromise = d3.json("custom.geo.json");
@@ -48,7 +34,7 @@ var margins = {top: 10, right: 50, bottom: 50, left: 25}
 //map info//
 
 projections = d3.geoMollweide()
-*/
+
 
 
 
