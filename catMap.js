@@ -29,7 +29,7 @@ Promise.all([dogPromise, catPromise, humanPromise])
 var screen = {width: 750, height: 550}
 var margins = {top: 10, right: 50, bottom: 50, left: 25}
 
-var setup = function(penguins)
+var setup = function(catDog)
            {
            d3.select("svg")
              .attr("width",screen.width)
