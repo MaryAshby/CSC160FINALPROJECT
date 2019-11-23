@@ -7,7 +7,21 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var dogPromise = d3.json("PUT IN DATA.json");
+var mapPromise= d3.json("custom.geo.json")
+           penguinePromise.then(function(data)
+                   {
+                     console.log("here");
+                     setBanner("Penguin Quizzes");
+                     setup(data);
+                   }, 
+                   function(err)
+                   {
+                   console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
+                   setBanner("Penguins Ditched the Test");
+                   })
+
+
+/*var dogPromise = d3.json("PUT IN DATA.json");
 var catPromise = d3.json("PUT IN DATA.json");
 var humanPromise = d3.json("PUT IN DATA.json");
 var mapPromise = d3.json("custom.geo.json");
@@ -24,6 +38,7 @@ Promise.all([dogPromise, catPromise, humanPromise])
                    console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
                    setBanner("Data has failed to load");
                    })
+                   */
 
 //Over all screen size//
 
