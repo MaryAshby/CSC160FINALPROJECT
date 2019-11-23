@@ -10,6 +10,7 @@ var setBanner = function(message)
 var dogPromise = d3.json("PUT IN DATA.json");
 var catPromise = d3.json("PUT IN DATA.json");
 var humanPromise = d3.json("PUT IN DATA.json");
+var mapPromise = d3.json("PUT IN DATA.json");
 
 Promise.all([dogPromise, catPromise, humanPromise])
        .then(function(data)
@@ -24,21 +25,16 @@ Promise.all([dogPromise, catPromise, humanPromise])
                    setBanner("Data has failed to load");
                    })
 
-//Over all screen size and margins of chart//
+//Over all screen size//
 
 var screen = {width: 750, height: 550}
 var margins = {top: 10, right: 50, bottom: 50, left: 25}
 
-var setup = function(catDog)
-           {
-           d3.select("svg")
-             .attr("width",screen.width)
-             .attr("height",screen.height)
-             .append("g")
-             .attr("id","graph")
-             .attr("transform","translate("+margins.left+ ","+ margins.top+")");
-             
-var width = screen.width - margins.left - margins.right;
-var height = screen.height - margins.top - margins.bottom;
+//map info//
+
+projections = d3.geoMollweide()
+
+
+
 
      
