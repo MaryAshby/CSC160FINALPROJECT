@@ -24,7 +24,7 @@ h1, h3, p
 
 svg#map 
 {
-      fill: #ccc;
+      fill: burlywood;
       stroke: #fff;
       stroke-linejoin: round;
       width: 100%;
