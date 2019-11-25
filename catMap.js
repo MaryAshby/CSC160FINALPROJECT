@@ -61,7 +61,7 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var dogPromise = d3.csv("");
+var dogPromise = d3.csv("Dogs.csv");
 var catPromise = d3.csv("");
 var humanPromise = d3.csv("");
 var mapPromise = d3.json("custom.geo.json");
