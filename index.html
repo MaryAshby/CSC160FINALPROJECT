@@ -5,6 +5,7 @@
 <title>Cats Rule</title>
   
 <link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script> 
 <script src="https://d3js.org/d3-array.v1.min.js"></script>
 <script src="https://d3js.org/d3-geo.v1.min.js"></script>
@@ -18,11 +19,11 @@
 <h1 id="banner">Loading Data on Cats and Dogs</h1>
 <h3>Cats are nobody's tool.</h3>
 
-<div id="graph">
-<svg id="coolStuff"></svg>
+<div id="box">
+<svg id="map"></svg>
 </div>
 
-<div id="otherStuff"></div>
+<div id="legend"></div>
 
 </body>
 
@@ -31,6 +32,7 @@
 <button type="button">References</button>
   <p>
     Base map from <a href="https://geojson-maps.ash.ms/">GeoJson Maps of the Globe</a>
+    </p>
 
 </footer>
 
