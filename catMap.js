@@ -11,21 +11,6 @@ var catPromise = d3.csv("Cats.csv");
 var humanPromise = d3.csv("Humans.csv");
 var mapPromise = d3.json("custom.geo.json");
 
-Promise.all([dogPromise, catPromise, humanPromise, mapPromise])
-       .then(function(geoData)
-                   {
-                     console.log("here");
-                     setBanner("Domestication of Cats and Dogs");
-                     setUp(geoData);
-                   }, 
-                   function(err)
-                   {
-                     console.log("Failure is an option",err);
-                     setBanner("Data has failed to load");
-                   })
-
-/*
-//testing//
 var mapPromise = d3.json("custom.geo.json");
          mapPromise.then(function(geoData)
                    {
@@ -38,7 +23,19 @@ var mapPromise = d3.json("custom.geo.json");
                      console.log("Failure is an option",err);
                      setBanner("Data has failed to load");
                    })
-*/
+
+
+Promise.all([dogPromise, catPromise, humanPromise])
+       .then(function(data)
+                   {
+                     console.log("here", data);
+                     
+                   }, 
+                   function(err)
+                   {
+                     console.log("Failure is an option",err);
+                   })
+
 //variables//
 var screen  = {width: 1200, height: 750}
 var margins = {top: 10, right: 50, bottom: 50, left: 25}
@@ -69,55 +66,6 @@ var setUp = function(countries, features)
                  return projectionType
         
 }
-     
-
-
-//map info// 
-
-var setUp = function(features)
-             {      
-               d3.select("svg")
-                 .selectAll("path")
-                 .data(".geometry.coordinates")
-                 .enter()
-                 .append("g")
-                 .attr("id","map")
-                 .append("path")
-                 .attr("d", path)
-                 .style("fill", "gray");	
-                 
-                 
-var width  = screen.width - margins.left - margins.right;
-var height = screen.height - margins.top - margins.bottom;
-                 
-
-//drawing lines of map//
-
-    
-var projectionType = d3.geoMollweide()                
-         
-var path =   d3.geoPath()
-               .projection(projectionType)
-               .scale(165)
-               .translate([width/2, height/2]);
-            
-                 
-         return path(features, cScale);
-                
-console.log("made it");
-         
-             };
-
-var drawMap = function (features, cScale, position)
-{
-    var map = d3.select("#map")
-                .selectAll("circle")
-                .data(dogs[position].location)
-                .transition()
-                .duration(1000)
-                .attr("fill", )
-}
-
 
 //layers//
 
