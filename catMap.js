@@ -1,9 +1,31 @@
-//below is testing//
+//promises//
 var setBanner = function(message)
                 {
                 d3.select("#banner").text(message);
                 }
 
+//Promise which includes setup call//
+
+var dogPromise = d3.csv("Dogs.csv");
+var catPromise = d3.csv("Cats.csv");
+var humanPromise = d3.csv("Humans.csv");
+var mapPromise = d3.json("custom.geo.json");
+
+Promise.all([dogPromise, catPromise, humanPromise, mapPromise])
+       .then(function(geoData)
+                   {
+                     console.log("here");
+                     setBanner("Domestication of Cats and Dogs");
+                     setUp(geoData);
+                   }, 
+                   function(err)
+                   {
+                     console.log("Failure is an option",err);
+                     setBanner("Data has failed to load");
+                   })
+
+/*
+//testing//
 var mapPromise = d3.json("custom.geo.json");
          mapPromise.then(function(geoData)
                    {
@@ -16,7 +38,7 @@ var mapPromise = d3.json("custom.geo.json");
                      console.log("Failure is an option",err);
                      setBanner("Data has failed to load");
                    })
-
+*/
 //variables//
 var screen  = {width: 1200, height: 750}
 var margins = {top: 10, right: 50, bottom: 50, left: 25}
@@ -47,43 +69,7 @@ var setUp = function(countries, features)
                  return projectionType
         
 }
-    
-            
-
-
-/* KEEP FOR FINAL PROJECT
-//Setting up h1 to change in case of failure to load .json file//
-
-var setBanner = function(message)
-                {
-                d3.select("#banner").text(message);
-                }
-
-//Promise which includes setup call//
-
-var dogPromise = d3.csv("Dogs.csv");
-var catPromise = d3.csv("");
-var humanPromise = d3.csv("");
-var mapPromise = d3.json("custom.geo.json");
-
-Promise.all([dogPromise, catPromise, humanPromise, mapPromise])
-       .then(function(geoData)
-                   {
-                     console.log("here");
-                     setBanner("Domestication of Cats and Dogs");
-                     setUp(geoData);
-                   }, 
-                   function(err)
-                   {
-                     console.log("Failure is an option",err);
-                     setBanner("Data has failed to load");
-                   })
-                   
-
-//Over all screen size//
-
-var screen  = {width: 1200, height: 600}
-var margins = {top: 10, right: 50, bottom: 50, left: 25}
+     
 
 
 //map info// 
