@@ -29,4 +29,5 @@ svg#map
       stroke-linejoin: round;
       width: 100%;
       height: 600px;
+      alignment-baseline: center:
 }
