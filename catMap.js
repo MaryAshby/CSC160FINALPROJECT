@@ -6,9 +6,9 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var dogPromise = d3.csv("Dogs.csv");
-var catPromise = d3.csv("Cats.csv");
+var catDogPromise = d3.csv("CatsDogs.csv");
 var humanPromise = d3.csv("Humans.csv");
+var countriesPromie = d3.csv("countryLatLon.csv");
 var mapPromise = d3.json("custom.geo.json");
 
 var mapPromise = d3.json("custom.geo.json");
@@ -25,7 +25,7 @@ var mapPromise = d3.json("custom.geo.json");
                    })
 
 
-Promise.all([dogPromise, catPromise, humanPromise])
+Promise.all([catDogPromise, humanPromise, countriesPromise])
        .then(function(data)
                    {
                      console.log("here", data);
@@ -66,6 +66,17 @@ var setUp = function(countries, features)
                  return projectionType
         
 }
+
+//combine datasets//
+
+var hash{}
+    catDogPromise.forEach(function(element)
+                  {
+      hash[element.homeLocation]=element;})
+countryPromise.forEach(function(e2)
+              {hash[e2.country].data=e2;})
+
+
 
 //layers//
 
