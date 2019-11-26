@@ -76,8 +76,8 @@ var hash{}
 countryPromise.forEach(function(e2)
               {hash[e2.country].data=e2;})
 
-
-
+console.log(catDogPromise)
+/*
 //layers//
 
 Map({
