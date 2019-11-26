@@ -1,4 +1,4 @@
-dogBreed,homeLocation,catBreed,homeLocation
+dogBreed,dCountry,catBreed,cCountry
 Affenpinscher,Germany,Abyssinian,Ethiopia
 Affenpinscher,France,Aegean,Greece
 Afghan Hound,Afghanistan,American Bobtail,United States
@@ -13,7 +13,7 @@ American Staffordshire Terrier,United States,Brazilian Shorthair,Brazil
 American Water Spaniel,United States,British Longhair,United Kingdom
 Anatolian Shepherd Dog,Turkey,British Shorthair,United Kingdom
 Andalusian Hound,Spain,Burmese,Burma
-Anglo-Français de Petite Vénerie,France,Burmilla,United Kingdom
+Anglo-FranÃ§ais de Petite VÃ©nerie,France,Burmilla,United Kingdom
 Appenzeller Sennenhund,Switzerland,California Spangled,United States
 Argentine Polar Dog,Argentina ,Chantilly-Tiffany,United States
 Ariegeois,France,Chartreux,France
@@ -33,7 +33,7 @@ Barbado da Terceira ,Portugal ,Japanese Bobtail,Japan
 Barbet,France,Javanese,United States
 Basenji,Congo(Republic),Karelian Bobtail,Russia
 Basque Shepherd Dog,Spain,Khao Manee,Thailand
-Basset Artésien Normand,France,Korat,Thailand
+Basset ArtÃ©sien Normand,France,Korat,Thailand
 Basset Bleu de Gascogne,France,Kurilian Bobtail,Japan
 Basset Fauve de Bretagne,France,Kurilian Bobtail,Japan
 Basset Hound,France,LaPerm,United States
@@ -51,14 +51,14 @@ Bergamasco Shepherd,Italy,Oregon Rex,United States
 Berger Blanc Suisse,Switzerland,Persian (traditional),Iran
 Berger Picard,France,Pixie-bob,United States
 Bernese Mountain Dog,Switzerland,Ragamuffin,United States
-Bichon Frisé,Spain,Russian Blue,Russia
+Bichon FrisÃ©,Spain,Russian Blue,Russia
 Billy,France,"Russian White, Black, and Tabby",Australia
 Black and Tan Coonhound,United States,Savannah,United States
 Black and Tan Virginia Foxhound,United States,Scottish Fold,Scotlland
 Black Norwegian Elkhound,Norway,Selkirk Rex,United States
 Black Russian Terrier,Russia,Serengeti,United States
-Black Mouth Cur,United States,Siamese (modern),United States
-Bloodhound,Belgium,Siamese (modern),Europe
+Black Mouth Cur,United States,SiameseÂ (modern),United States
+Bloodhound,Belgium,SiameseÂ (modern),Europe
 Bloodhound,France,Siberian,Russia
 Blue Heeler,Australia,Singapura,United States
 Blue Lacy,United States,Snowshoe,United States
@@ -87,7 +87,7 @@ Braque Saint-Germain,France,,
 Brazilian Dogo,Brazil,,
 Brazilian Terrier,Brazil,,
 Briard,France,,
-Briquet Griffon Vendéen,France,,
+Briquet Griffon VendÃ©en,France,,
 Brittany,France,,
 Broholmer,Denmark,,
 Bruno Jura Hound,Switzerland,,
@@ -106,10 +106,10 @@ Canaan Dog,Israel,,
 Canadian Eskimo Dog,Canada,,
 Cane Corso,Italy,,
 Cantabrian Water Dog,Spain,,
-Cão da Serra de Aires,Portugal,,
-Cão de Castro Laboreiro,Portugal,,
-Cão de Gado Transmontano,Portugal,,
-Cão Fila de São Miguel,Portugal,,
+CÃ£o da Serra de Aires,Portugal,,
+CÃ£o de Castro Laboreiro,Portugal,,
+CÃ£o de Gado Transmontano,Portugal,,
+CÃ£o Fila de SÃ£o Miguel,Portugal,,
 Carolina Dog,United States,,
 Carpathian Shepherd Dog,Romania,,
 Catalan Sheepdog,Spain,,
@@ -119,9 +119,9 @@ Central Asian Shepherd Dog,Russia,,
 Cesky Fousek,Czech Republic,,
 Cesky Terrier,Czech Republic,,
 Chesapeake Bay Retriever,United States,,
-Chien Français Blanc et Noir,France,,
-Chien Français Blanc et Orange,France,,
-Chien Français Tricolore,France,,
+Chien FranÃ§ais Blanc et Noir,France,,
+Chien FranÃ§ais Blanc et Orange,France,,
+Chien FranÃ§ais Tricolore,France,,
 Chien-gris,France,,
 Chihuahua,Mexico,,
 Chilean Terrier,Chile,,
@@ -192,7 +192,7 @@ French Brittany,France,,
 French Bulldog,France,,
 French Spaniel,France,,
 Gaddi Kutta,India,,
-Galgo Español,Spain,,
+Galgo EspaÃ±ol,Spain,,
 Galician Shepherd Dog,Spain,,
 Garafian Shepherd,Spain,,
 Gascon Saintongeois,France,,
@@ -209,13 +209,13 @@ Giant Schnauzer,Germany,,
 Glen of Imaal Terrier,Ireland,,
 Golden Retriever,Scotland,,
 Gordon Setter,Scotland,,
-Gran Mastín de Borínquen,Puerto Rico,,
-Grand Anglo-Français Blanc et Noir,France,,
-Grand Anglo-Français Blanc et Orange,France,,
-Grand Anglo-Français Tricolore,France,,
-Grand Basset Griffon Vendéen,France,,
+Gran MastÃ­n de BorÃ­nquen,Puerto Rico,,
+Grand Anglo-FranÃ§ais Blanc et Noir,France,,
+Grand Anglo-FranÃ§ais Blanc et Orange,France,,
+Grand Anglo-FranÃ§ais Tricolore,France,,
+Grand Basset Griffon VendÃ©en,France,,
 Grand Bleu de Gascogne,France,,
-Grand Griffon Vendéen,France,,
+Grand Griffon VendÃ©en,France,,
 Great Dane,Germany,,
 Great Pyrenees,France,,
 Great Pyrenees,Spain,,
@@ -231,7 +231,7 @@ Griffon Nivernais,France,,
 Guatemalan Dogo,Guatemala,,
 Gull Terrier,India,,
 Gull Terrier,Pakistan,,
-Hamiltonstövare,Sweden,,
+HamiltonstÃ¶vare,Sweden,,
 Hanover Hound,Germany,,
 Hare Indian Dog,United States,,
 Harrier,United Kingdom,,
@@ -281,7 +281,7 @@ Kishu Ken,Japan,,
 Komondor,Hungary,,
 Koolie,Australia,,
 Koyun dog,Turkey,,
-Kromfohrländer,Germany,,
+KromfohrlÃ¤nder,Germany,,
 Kumaon Mastiff,India,,
 Kunming Wolfdog,China,,
 Kur?,New Zealand,,
@@ -299,10 +299,10 @@ Leonberger,Germany,,
 Lhasa Apso,Tibet,,
 Lithuanian Hound,Lithuania,,
 Louisiana Catahoula Leopard Dog,United States,,
-Löwchen,Germany,,
+LÃ¶wchen,Germany,,
 Mackenzie River husky,Canada,,
-Magyar agár,Hungary,,
-Magyar agár,Romania,,
+Magyar agÃ¡r,Hungary,,
+Magyar agÃ¡r,Romania,,
 Mahratta Greyhound,India,,
 Maltese,Italy,,
 Manchester Terrier,United Kingdom,,
@@ -324,8 +324,8 @@ Mountain Cur,United States,,
 Mucuchies,Venezuela,,
 Mudhol Hound,India,,
 Mudi,Hungary,,
-"Münsterländer, Large",Germany,,
-"Münsterländer, Small",Germany,,
+"MÃ¼nsterlÃ¤nder, Large",Germany,,
+"MÃ¼nsterlÃ¤nder, Small",Germany,,
 Neapolitan Mastiff,Italy,,
 Nederlandse Kooikerhondje,Netherlands,,
 Newfoundland,Canada,,
@@ -363,9 +363,9 @@ Perro de Pastor Mallorquin,Spain,,
 Perro de Presa Canario,Spain,,
 Perro de Presa Mallorquin,Spain,,
 Peruvian Inca Orchid,Peru,,
-Petit Basset Griffon Vendéen,France,,
+Petit Basset Griffon VendÃ©en,France,,
 Petit Bleu de Gascogne,France,,
-Phalène,Belgium,,
+PhalÃ¨ne,Belgium,,
 Pharaoh Hound,Malta,,
 Phu Quoc Ridgeback,Vietnam,,
 Picardy Spaniel,France,,
@@ -388,7 +388,7 @@ Portuguese Pointer,Portugal,,
 Portuguese Water Dog,Portugal,,
 Posavac Hound,Croatia,,
 Potsdam Greyhound,Italy,,
-Pražský Krysa?ík,Czech Republic,,
+PraÂžskÃ½ Krysa?Ã­k,Czech Republic,,
 Pudelpointer,Germany,,
 Pug,China,,
 Puli,Hungary,,
@@ -418,7 +418,7 @@ Russo-European Laika,Russia,,
 Russell Terrier,United Kingdom,,
 Saarloos Wolfdog,Netherlands,,
 Saarloos Wolfdog,Germany,,
-Sabueso Español,Spain,,
+Sabueso EspaÃ±ol,Spain,,
 Sabueso fino Colombiano,Colombia,,
 Saint Bernard,Italy,,
 Saint Bernard,Switzerland,,
@@ -429,9 +429,9 @@ Salish Wool Dog,Canada ,,
 Saluki,Fertile Crescent,,
 Samoyed,Russia,,
 Sapsali,Korea,,
-Šarplaninac,Serbia,,
+ÂŠarplaninac,Serbia,,
 Schapendoes,Netherlands,,
-Schillerstövare,Sweden,,
+SchillerstÃ¶vare,Sweden,,
 Schipperke,Belgium,,
 Schweizer Laufhund,Switzerland,,
 Schweizerischer Niederlaufhund,Switzerland,,
@@ -458,8 +458,8 @@ Skye Terrier,Scotland,,
 Sloughi,Morocco,,
 Slovak Cuvac,Slovakia,,
 Slovakian Wirehaired Pointer,Slovakia,,
-Slovenský kopov,Slovakia,,
-Smålandsstövare,Sweden,,
+SlovenskÃ½ kopov,Slovakia,,
+SmÃ¥landsstÃ¶vare,Sweden,,
 Small Greek Domestic Dog,Greece,,
 Soft-Coated Wheaten Terrier,Ireland,,
 South Russian Ovcharka,Russia,,
@@ -504,7 +504,7 @@ Treeing Walker Coonhound,United States,,
 Trigg Hound,United States,,
 Tweed Water Spaniel,Scotland,,
 Tyrolean Hound,Austria,,
-Cimarrón Uruguayo,Uruguay,,
+CimarrÃ³n Uruguayo,Uruguay,,
 Vanjari Hound,India,,
 Villano de Las Encartaciones,Spain,,
 Villanuco de Las Encartaciones,Spain,,
