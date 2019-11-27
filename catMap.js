@@ -6,7 +6,7 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-/*var catDogPromise = d3.csv("CatsDogs.csv");
+/*var catDogPromise = d3.csv("catDogData.csv");
 var humanPromise = d3.csv("Humans.csv");
 var mapPromise = d3.json("custom.geo.json");*/
 
@@ -25,7 +25,7 @@ var mapPromise = d3.json("custom.geo.json");
 
 //csv promises including changing CSV strings to numbers//
 
-var catDogPromise = d3.csv("catDogData.csv");
+var catDogPromise = d3.csv("catsDogData.csv"); 
       catDogPromise .then(function(data)
                    { data.forEach(function(d) {
                      d.dLon = +d.dLon;
@@ -35,6 +35,19 @@ var catDogPromise = d3.csv("catDogData.csv");
                      console.log("here2", data);
                      dogSpots(data);
                      catSpots(data);
+                   }), 
+                   function(err)
+                   {
+                     console.log("Failure is an option",err);
+                   }})
+
+var humanPromise = d3.csv("Humans.csv");
+      humanPromise .then(function(data)
+                   { data.forEach(function(d) {
+                     d.longitude = +d.longitude;
+                     d.latitude = +d.latitude;
+                     console.log("here3", data);
+                     humanSpots(data)
                    }), 
                    function(err)
                    {
@@ -76,7 +89,7 @@ var setUp = function(countries, features)
 
 var dogSpots = function(data)
 {
-    var spots = d3.select("svg")
+    var spots = d3.select("#map")
                   .selectAll("circle")
                   .data(data)
                   .enter()
@@ -95,12 +108,13 @@ var dogSpots = function(data)
                   .style("stroke-width", 0.25)
                   .style("opacity", 0.75);
     
-//called in the promiseAll//
+//called in the catDogPromise//
 };
 
- var catSpots = function(data)
+
+var catSpots = function(data)
 {
-    var spots = d3.select("svg")
+    var spots = d3.select("#map")
                   .selectAll("circle")
                   .data(data)
                   .enter()
@@ -114,29 +128,40 @@ var dogSpots = function(data)
                          return projectionType([d.cLon, d.cLat])[1];
                         })
                   .attr("r", 20)
-                  .style("fill", "red")
+                  .style("fill", "gray")
                   .style("stroke", "gray")
                   .style("stroke-width", 0.25)
                   .style("opacity", 0.75);
     
-//called in the promiseAll//
-};             
-/*
-//combine datasets//
+//called in the catDogPromise//
+};
 
-var hash = function(countries, dCountry)
+
+var humanSpots = function(data)
 {
-    mapPromise.forEach(function(element)
-                  {
-                   hash[element.admin] = element;
-                  })
-    catDogPromise.forEach(function(e2)
-                  {
-                   hash[e2.admin].data = e2;
-                  })
-}
-console.log("combined", catDogPromise)
-*/
+    var spots = d3.select("#map")
+                  .selectAll("circle")
+                  .data(data)
+                  .enter()
+                  .append("circle")
+                  .attr("cx", function(d)
+                       {
+                        return projectionType([d.longitude, d.latitude])[0];
+                       })
+                  .attr("cy", function(d)
+                        {
+                         return projectionType([d.longitude, d.latitude])[1];
+                        })
+                  .attr("r", 10)
+                  .style("fill", "black")
+                  .style("stroke", "gray")
+                  .style("stroke-width", 0.25)
+                  .style("opacity", 0.75);
+    
+//called in the humanPromise//
+};
+
+              
 /*
 //layers//
 
