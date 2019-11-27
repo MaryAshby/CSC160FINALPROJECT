@@ -6,10 +6,9 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var catDogPromise = d3.csv("CatsDogs.csv");
+/*var catDogPromise = d3.csv("CatsDogs.csv");
 var humanPromise = d3.csv("Humans.csv");
-var countriesPromie = d3.csv("countryLatLon.csv");
-var mapPromise = d3.json("custom.geo.json");
+var mapPromise = d3.json("custom.geo.json");*/
 
 var mapPromise = d3.json("custom.geo.json");
          mapPromise.then(function(geoData)
@@ -24,19 +23,23 @@ var mapPromise = d3.json("custom.geo.json");
                      setBanner("Data has failed to load");
                    })
 
+//csv promises including changing CSV strings to numbers//
 
-Promise.all([catDogPromise, humanPromise, countriesPromise])
-       .then(function(data)
-                   {
-                     console.log("here", data);
-                     
-                   }, 
+var catDogPromise = d3.csv("CatsDogs.csv");
+      catDogPromise .then(function(data)
+                   { data.forEach(function(d) {
+                     d.lon = +d.lon;
+                     d.lat = +d.lat;
+                     console.log("here2", data);
+                     dogSpots(data)
+                   }), 
                    function(err)
                    {
                      console.log("Failure is an option",err);
-                   })
+                   }})
 
 //variables//
+
 var screen  = {width: 1200, height: 750}
 var margins = {top: 10, right: 50, bottom: 50, left: 25}
 
@@ -64,19 +67,51 @@ var setUp = function(countries, features)
                     .attr("d", path); //where d is the geoPath data//
             
                  return projectionType
-        
+    
+//called in the mapPromise//
 }
 
+var dogSpots = function(data)
+{
+    var spots = d3.select("svg")
+                  .selectAll("circle")
+                  .data(data)
+                  .enter()
+                  .append("circle")
+                  .attr("cx", function(d)
+                       {
+                        return projectionType([d.lon, d.lat])[0];
+                       })
+                  .attr("cy", function(d)
+                        {
+                         return projectionType([d.lon, d.lat])[1];
+                        })
+                  .attr("r", 20)
+                  .style("fill", "yellow")
+                  .style("stroke", "gray")
+                  .style("stroke-width", 0.25)
+                  .style("opacity", 0.75);
+    
+//called in the promiseAll//
+};
+
+              
+/*
 //combine datasets//
 
-var hash{}
-    catDogPromise.forEach(function(element)
+var hash = function(countries, dCountry)
+{
+    mapPromise.forEach(function(element)
                   {
-      hash[element.homeLocation]=element;})
-countryPromise.forEach(function(e2)
-              {hash[e2.country].data=e2;})
-
-console.log(catDogPromise)
+                   hash[element.admin] = element;
+                  })
+    catDogPromise.forEach(function(e2)
+                  {
+                   hash[e2.admin].data = e2;
+                  })
+}
+console.log("combined", catDogPromise)
+*/
 /*
 //layers//
 
