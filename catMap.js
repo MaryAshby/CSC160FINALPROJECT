@@ -25,13 +25,16 @@ var mapPromise = d3.json("custom.geo.json");
 
 //csv promises including changing CSV strings to numbers//
 
-var catDogPromise = d3.csv("CatsDogs.csv");
+var catDogPromise = d3.csv("catDogData.csv");
       catDogPromise .then(function(data)
                    { data.forEach(function(d) {
-                     d.lon = +d.lon;
-                     d.lat = +d.lat;
+                     d.dLon = +d.dLon;
+                     d.dLat = +d.dLat;
+                     d.cLon = +d.cLon;
+                     d.cLat = +d.cLat;
                      console.log("here2", data);
-                     dogSpots(data)
+                     dogSpots(data);
+                     catSpots(data);
                    }), 
                    function(err)
                    {
@@ -80,11 +83,11 @@ var dogSpots = function(data)
                   .append("circle")
                   .attr("cx", function(d)
                        {
-                        return projectionType([d.lon, d.lat])[0];
+                        return projectionType([d.dLon, d.dLat])[0];
                        })
                   .attr("cy", function(d)
                         {
-                         return projectionType([d.lon, d.lat])[1];
+                         return projectionType([d.dLon, d.dLat])[1];
                         })
                   .attr("r", 20)
                   .style("fill", "yellow")
@@ -95,7 +98,29 @@ var dogSpots = function(data)
 //called in the promiseAll//
 };
 
-              
+ var catSpots = function(data)
+{
+    var spots = d3.select("svg")
+                  .selectAll("circle")
+                  .data(data)
+                  .enter()
+                  .append("circle")
+                  .attr("cx", function(d)
+                       {
+                        return projectionType([d.cLon, d.cLat])[0];
+                       })
+                  .attr("cy", function(d)
+                        {
+                         return projectionType([d.cLon, d.cLat])[1];
+                        })
+                  .attr("r", 20)
+                  .style("fill", "red")
+                  .style("stroke", "gray")
+                  .style("stroke-width", 0.25)
+                  .style("opacity", 0.75);
+    
+//called in the promiseAll//
+};             
 /*
 //combine datasets//
 
