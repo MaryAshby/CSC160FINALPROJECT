@@ -6,14 +6,10 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-/*var catDogPromise = d3.csv("catDogData.csv");
-var humanPromise = d3.csv("Humans.csv");
-var mapPromise = d3.json("custom.geo.json");*/
-
 var mapPromise = d3.json("custom.geo.json");
          mapPromise.then(function(geoData)
                    {
-                     console.log("here", geoData);
+                     console.log("map data loaded");
                      setBanner("Domestication of Cats and Dogs");
                      setUp(geoData);
                    }, 
@@ -25,34 +21,25 @@ var mapPromise = d3.json("custom.geo.json");
 
 //csv promises including changing CSV strings to numbers//
 
-var catDogPromise = d3.csv("catsDogData.csv"); 
-      catDogPromise .then(function(data)
+var humCatDogPromise = d3.csv("humCatDog.csv"); 
+      humCatDogPromise .then(function(data)
                    { data.forEach(function(d) {
                      d.dLon = +d.dLon;
                      d.dLat = +d.dLat;
                      d.cLon = +d.cLon;
                      d.cLat = +d.cLat;
-                     console.log("here2", data);
+                     d.hLon = +d.hLon;
+                     d.hLat = +d.hLat;
+                     console.log("mammals have loaded");
                      dogSpots(data);
                      catSpots(data);
+                     humanSpots(data);
                    }), 
                    function(err)
                    {
                      console.log("Failure is an option",err);
                    }})
 
-var humanPromise = d3.csv("Humans.csv");
-      humanPromise .then(function(data)
-                   { data.forEach(function(d) {
-                     d.longitude = +d.longitude;
-                     d.latitude = +d.latitude;
-                     console.log("here3", data);
-                     humanSpots(data)
-                   }), 
-                   function(err)
-                   {
-                     console.log("Failure is an option",err);
-                   }})
 
 //variables//
 
@@ -89,7 +76,7 @@ var setUp = function(countries, features)
 
 var dogSpots = function(data)
 {
-    var spots = d3.select("#map")
+    var spots = d3.select("#dog")
                   .selectAll("circle")
                   .data(data)
                   .enter()
@@ -102,19 +89,19 @@ var dogSpots = function(data)
                         {
                          return projectionType([d.dLon, d.dLat])[1];
                         })
-                  .attr("r", 20)
-                  .style("fill", "yellow")
-                  .style("stroke", "gray")
-                  .style("stroke-width", 0.25)
-                  .style("opacity", 0.75);
+                  .attr("r", 5)
+                  .style("fill", "#fcf340")
+                  .style("stroke", "#fcf340")
+                  .style("stroke-width", 0.15)
+                  .style("opacity", 0.25);
     
-//called in the catDogPromise//
+//called in the humCatDogPromise//
 };
 
 
 var catSpots = function(data)
 {
-    var spots = d3.select("#map")
+    var spots = d3.select("#cat")
                   .selectAll("circle")
                   .data(data)
                   .enter()
@@ -127,38 +114,39 @@ var catSpots = function(data)
                         {
                          return projectionType([d.cLon, d.cLat])[1];
                         })
-                  .attr("r", 20)
-                  .style("fill", "gray")
-                  .style("stroke", "gray")
-                  .style("stroke-width", 0.25)
-                  .style("opacity", 0.75);
+                  .attr("r", 5)
+                  .style("fill", "#0310ea")
+                  .style("stroke", "#0310ea")
+                  .style("stroke-width", 0.15)
+                  .style("opacity", 0.25);
     
-//called in the catDogPromise//
+    
+//called in the humCatDogPromise//
 };
 
 
 var humanSpots = function(data)
 {
-    var spots = d3.select("#map")
+    var spots = d3.select("#human")
                   .selectAll("circle")
                   .data(data)
                   .enter()
                   .append("circle")
                   .attr("cx", function(d)
                        {
-                        return projectionType([d.longitude, d.latitude])[0];
+                        return projectionType([d.hLon, d.hLat])[0];
                        })
                   .attr("cy", function(d)
                         {
-                         return projectionType([d.longitude, d.latitude])[1];
+                         return projectionType([d.hLon, d.hLat])[1];
                         })
-                  .attr("r", 10)
-                  .style("fill", "black")
-                  .style("stroke", "gray")
+                  .attr("r", 20)
+                  .style("fill", "#7fff00")
+                  .style("stroke", "#7fff00")
                   .style("stroke-width", 0.25)
                   .style("opacity", 0.75);
     
-//called in the humanPromise//
+//called in the humCatDogPromise//
 };
 
               
