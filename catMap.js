@@ -6,8 +6,7 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var mapPromise = d3.json("custom.geo.json")
-
+var mapPromise = d3.json("custom.geo.json");
 
 var dogPromise = d3.csv("Dogs.csv"); 
         
@@ -15,12 +14,7 @@ var humPromise = d3.csv("human.csv");
       
 var catPromise = d3.csv("Cats.csv"); 
        
-Promise.all([
-  d3.json("custom.geo.json"),
-  d3.csv("Dogs.csv"),
-  d3.csv("Cats.csv"),
-  d3.csv("human.csv")
-])
+Promise.all([mapPromise, dogPromise, humPromise, catPromise])
        .then(function(value)
                    {
                      setBanner("Domestication of Cats and Dogs");
