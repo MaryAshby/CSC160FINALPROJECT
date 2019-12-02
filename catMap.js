@@ -50,11 +50,10 @@ var catDogPromise = d3.csv("catDog.csv");
                        
                      dogSpots(data);
                      catSpots(data);
-                     humanSpots(data);
                    }), 
                    function(err)
                    {
-                     console.log("Failure is an option",err);
+                   console.log("Failure is an option",err);
                    }})
 
 
@@ -117,9 +116,9 @@ var dogSpots = function(data)
                         return "Dog Breed: " + d.dBreed
                         });
     
-// console.log("Who let the dog out");
+// console.log("Who let the dogs out");
     
-//called in the humCatDogPromise//
+//called in the catDogPromise//
 };
 
 
