@@ -36,7 +36,7 @@ var humPromise = d3.csv("human.csv");
                      console.log("Failure is an option",err);
                    }})
 
-var catDogPromise = d3.csv("humCatDog.csv"); 
+var catDogPromise = d3.csv("catDog.csv"); 
          catDogPromise.then(function(data)
                    { 
                     data.forEach(function(d) 
