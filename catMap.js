@@ -9,16 +9,16 @@ var setBanner = function(message)
 var mapPromise = d3.json("custom.geo.json")
 
 
-var dogPromise = d3.csv("Dog.csv"); 
+var dogPromise = d3.csv("Dogs.csv"); 
         
 var humPromise = d3.csv("human.csv"); 
       
-var catPromise = d3.csv("Cat.csv"); 
+var catPromise = d3.csv("Cats.csv"); 
        
 Promise.all([
   d3.json("custom.geo.json"),
-  d3.csv("Dog.csv"),
-  d3.csv("Cat.csv"),
+  d3.csv("Dogs.csv"),
+  d3.csv("Cats.csv"),
   d3.csv("human.csv")
 ])
        .then(function(value)
