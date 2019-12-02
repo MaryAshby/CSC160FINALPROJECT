@@ -9,7 +9,7 @@ var setBanner = function(message)
 var mapPromise = d3.json("custom.geo.json");
          mapPromise.then(function(geoData)
                    {
-                     console.log("map data loaded");
+//console.log("map data loaded");
                      setBanner("Domestication of Cats and Dogs");
                      setUp(geoData);
                    }, 
@@ -21,16 +21,33 @@ var mapPromise = d3.json("custom.geo.json");
 
 //csv promises including changing CSV strings to numbers//
 
-var humCatDogPromise = d3.csv("humCatDog.csv"); 
-      humCatDogPromise .then(function(data)
+var humPromise = d3.csv("human.csv"); 
+      humPromise .then(function(data)
                    { data.forEach(function(d) {
+                     d.hLon = +d.hLon;
+                     d.hLat = +d.hLat;
+                       
+//console.log("humans have loaded");
+                       
+                     humanSpots(data);
+                   }), 
+                   function(err)
+                   {
+                     console.log("Failure is an option",err);
+                   }})
+
+var catDogPromise = d3.csv("humCatDog.csv"); 
+         catDogPromise.then(function(data)
+                   { 
+                    data.forEach(function(d) 
+                    {
                      d.dLon = +d.dLon;
                      d.dLat = +d.dLat;
                      d.cLon = +d.cLon;
                      d.cLat = +d.cLat;
-                     d.hLon = +d.hLon;
-                     d.hLat = +d.hLat;
-                     console.log("mammals have loaded");
+                       
+// console.log("mammals have loaded");
+                       
                      dogSpots(data);
                      catSpots(data);
                      humanSpots(data);
@@ -51,7 +68,7 @@ var height = screen.height - margins.top - margins.bottom;
 
 var projectionType = d3.geoMollweide()
                        .center([0, 0])
-                       .scale([250]) //scale can be adjusted//
+                       .scale([225]) //scale can be adjusted//
                        .translate([width/2,height/2]);  //center of map to line up with center of projection//              
 
 var path =   d3.geoPath()
@@ -92,8 +109,15 @@ var dogSpots = function(data)
                   .attr("r", 5)
                   .style("fill", "#fcf340")
                   .style("stroke", "#fcf340")
-                  .style("stroke-width", 0.15)
-                  .style("opacity", 0.25);
+                  .style("stroke-width", 0.75)
+                  .style("opacity",1)
+                  .append("title")
+                  .text(function(d)
+                       { 
+                        return "Dog Breed: " + d.dBreed
+                        });
+    
+// console.log("Who let the dog out");
     
 //called in the humCatDogPromise//
 };
@@ -114,13 +138,19 @@ var catSpots = function(data)
                         {
                          return projectionType([d.cLon, d.cLat])[1];
                         })
-                  .attr("r", 5)
+                  .attr("r",4)
                   .style("fill", "#0310ea")
                   .style("stroke", "#0310ea")
-                  .style("stroke-width", 0.15)
-                  .style("opacity", 0.25);
+                  .style("stroke-width", 0.75)
+                  .style("opacity", 1)
+                  .append("title")
+                  .text(function(d)
+                     {
+                        return ("Cat Breed: " + d.cBreed)           
+                     });
     
-    
+// console.log("Puuurrrrrffffeccccttttt");
+   
 //called in the humCatDogPromise//
 };
 
@@ -140,13 +170,48 @@ var humanSpots = function(data)
                         {
                          return projectionType([d.hLon, d.hLat])[1];
                         })
-                  .attr("r", 20)
+                  .attr("r", 4)
                   .style("fill", "#7fff00")
                   .style("stroke", "#7fff00")
-                  .style("stroke-width", 0.25)
-                  .style("opacity", 0.75);
+                  .style("stroke-width", 0.75)
+                  .style("opacity", 1)
+                  .append("title")
+                  .text(function(d)
+                     {
+                        return ("Human: " + d.hName)         
+                     }); 
     
-//called in the humCatDogPromise//
+    
+//console.log("only human", data);
+    
+//called in the humPromise//
 };
 
-              
+//migration lines//
+
+//Set up starts and destinations//
+
+ 
+var cMigArray={type:"LineString", coordinates: [[2.213749,46.227638],[138.252924,36.204824]]};
+       
+          
+console.log("lines");        
+           
+ 
+ var cMig =  d3.select("#cat")
+               .selectAll("path")
+               .data(cMigArray)
+               .enter()
+               .append("path")
+               .attr("d", path(cMigArray))
+               .style("fill", "none")
+               .style("stroke", "orange")
+               .style("stroke-width", 7);
+                     
+                     /*function(d) 
+                     {
+                   return path(d.arcs)
+               });*/
+ 
+ console.log("this is the end");
+ 
