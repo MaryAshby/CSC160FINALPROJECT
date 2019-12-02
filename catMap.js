@@ -6,12 +6,26 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var mapPromise = d3.json("custom.geo.json");
-         mapPromise.then(function(geoData)
+var mapPromise = d3.json("custom.geo.json")
+
+
+var dogPromise = d3.csv("Dog.csv"); 
+        
+var humPromise = d3.csv("human.csv"); 
+      
+var catPromise = d3.csv("Cat.csv"); 
+       
+Promise.all([
+  d3.json("custom.geo.json"),
+  d3.csv("Dog.csv"),
+  d3.csv("Cat.csv"),
+  d3.csv("human.csv")
+])
+       .then(function(value)
                    {
-//console.log("map data loaded");
                      setBanner("Domestication of Cats and Dogs");
-                     setUp(geoData);
+                     setUp();
+    
                    }, 
                    function(err)
                    {
@@ -19,44 +33,7 @@ var mapPromise = d3.json("custom.geo.json");
                      setBanner("Data has failed to load");
                    })
 
-//csv promises including changing CSV strings to numbers//
-
-var humPromise = d3.csv("human.csv"); 
-      humPromise .then(function(data)
-                   { data.forEach(function(d) {
-                     d.hLon = +d.hLon;
-                     d.hLat = +d.hLat;
-                       
-//console.log("humans have loaded");
-                       
-                     humanSpots(data);
-                   }), 
-                   function(err)
-                   {
-                     console.log("Failure is an option",err);
-                   }})
-
-var catDogPromise = d3.csv("catDog.csv"); 
-         catDogPromise.then(function(data)
-                   { 
-                    data.forEach(function(d) 
-                    {
-                     d.dLon = +d.dLon;
-                     d.dLat = +d.dLat;
-                     d.cLon = +d.cLon;
-                     d.cLat = +d.cLat;
-                       
-// console.log("mammals have loaded");
-                       
-                     dogSpots(data);
-                     catSpots(data);
-                   }), 
-                   function(err)
-                   {
-                   console.log("Failure is an option",err);
-                   }})
-
-
+         
 //variables//
 
 var screen  = {width: 1200, height: 750}
@@ -73,39 +50,51 @@ var projectionType = d3.geoMollweide()
 var path =   d3.geoPath()
                .projection(projectionType);
 
-//draw map//
-
                    
 var setUp = function(countries, features)
 {
- var landBodies = d3.select("#map")
+ var landBodies = d3.select("#gbu")
                     .selectAll("path")
+                    .attr("width",screen.width)
+                    .attr("height",screen.height)
                     .data(countries.features)
                     .enter()
+                    .append("g")
                     .append("path")
-                    .attr("d", path); //where d is the geoPath data//
-            
+                    .attr("id","map")
+                    .attr("d", path) //where d is the geoPath data//                  
+                    .append("title")
+                    .text(function(d)
+                        {
+                        return ("Breeds: " + d.admin)      //CHANGE TO NAMES OF BREEDS//   
+                        });
+    
                  return projectionType
     
-//called in the mapPromise//
+//called in the Promise//
 }
+
 
 var dogSpots = function(data)
 {
-    var spots = d3.select("#dog")
+    var spots = d3.select("svg")
+                  .attr("width",screen.width)
+                  .attr("height",screen.height)
+                  .append("g")
+                  .attr("id","dog")
                   .selectAll("circle")
                   .data(data)
                   .enter()
                   .append("circle")
                   .attr("cx", function(d)
                        {
-                        return projectionType([d.dLon, d.dLat])[0];
+                        return projectionType([+d.dLon, +d.dLat])[0];
                        })
                   .attr("cy", function(d)
                         {
-                         return projectionType([d.dLon, d.dLat])[1];
+                         return projectionType([+d.dLon, +d.dLat])[1];
                         })
-                  .attr("r", 5)
+                  .attr("r", 3)
                   .style("fill", "#fcf340")
                   .style("stroke", "#fcf340")
                   .style("stroke-width", 0.75)
@@ -118,24 +107,28 @@ var dogSpots = function(data)
     
 // console.log("Who let the dogs out");
     
-//called in the catDogPromise//
+//called in the Promise//
 };
 
 
 var catSpots = function(data)
 {
-    var spots = d3.select("#cat")
+    var spots = d3.select("#svg")
+                  .attr("width",screen.width)
+                  .attr("height",screen.height)
+                  .append("g")
+                  .attr("id","cat")
                   .selectAll("circle")
                   .data(data)
                   .enter()
-                  .append("circle")
+                  layer3.append("circle")
                   .attr("cx", function(d)
                        {
-                        return projectionType([d.cLon, d.cLat])[0];
+                        return projectionType([+d.cLon + 2, +d.cLat + 2])[0];
                        })
                   .attr("cy", function(d)
                         {
-                         return projectionType([d.cLon, d.cLat])[1];
+                         return projectionType([+d.cLon +2, +d.cLat +2])[1];
                         })
                   .attr("r",4)
                   .style("fill", "#0310ea")
@@ -150,26 +143,30 @@ var catSpots = function(data)
     
 // console.log("Puuurrrrrffffeccccttttt");
    
-//called in the humCatDogPromise//
+//called in the Promise//
 };
 
 
 var humanSpots = function(data)
 {
-    var spots = d3.select("#human")
+    var spots = d3.select("#svg")
+                  .attr("width",screen.width)
+                  .attr("height",screen.height)
+                  .append("g")
+                  .attr("id","human")
                   .selectAll("circle")
                   .data(data)
                   .enter()
                   .append("circle")
                   .attr("cx", function(d)
                        {
-                        return projectionType([d.hLon, d.hLat])[0];
+                        return projectionType([+d.hLon, +d.hLat])[0];
                        })
                   .attr("cy", function(d)
                         {
-                         return projectionType([d.hLon, d.hLat])[1];
+                         return projectionType([+d.hLon, +d.hLat])[1];
                         })
-                  .attr("r", 4)
+                  .attr("r", 3)
                   .style("fill", "#7fff00")
                   .style("stroke", "#7fff00")
                   .style("stroke-width", 0.75)
@@ -183,34 +180,46 @@ var humanSpots = function(data)
     
 //console.log("only human", data);
     
-//called in the humPromise//
+//called in the Promise//
 };
 
 //migration lines//
+/*var svg = d3.select("#human").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-//Set up starts and destinations//
+var cook = {"type": "LineString", "coordinates": [[-4.1397, 50.3706], [-43.2436, -22.9083] , [-67.2717, -55.9797] , [-149.4500, -17.6667], [172.1936, -41.4395] ,[151.1667, -34] , [147.70, -18.3] ,[106.7, -6], [18.4719, -34.3], [-5,-15], [-25.6, 37.7],[-4.1397, 50.3706]] }
 
- 
-var cMigArray={type:"LineString", coordinates: [[2.213749,46.227638],[138.252924,36.204824]]};
-       
-          
-console.log("lines");        
-           
- 
- var cMig =  d3.select("#cat")
-               .selectAll("path")
-               .data(cMigArray)
-               .enter()
-               .append("path")
-               .attr("d", path(cMigArray))
-               .style("fill", "none")
-               .style("stroke", "orange")
-               .style("stroke-width", 7);
-                     
-                     /*function(d) 
-                     {
-                   return path(d.arcs)
-               });*/
- 
- console.log("this is the end");
+svg.selectAll(".geojson").data([cook])
+.enter()
+.append("path")
+.attr("class","geojson")
+.attr("d", path);
+
+
+/*
+var drawCat = function(catRoutes) 
+              {				
+	 var cMigPath = d3.select("#container")
+                     .selectAll(".catRoute")
+			         .data(routes)
+			         .enter()
+			         .append("path")
+			         .attr("class","route")
+			         .style("stroke-width", 7)
+			         .attr('d', function(d) 
+                           {
+				            return path 
+				               type:"LineString",
+				               coordinates [[+d.cLon, +d.cLat],[+d.cMigLon, +d.cMigLat]]
+                            })}
+               
+*/
+//Set up starts and destinations//   
+
+//console.log(path(link));
+
+     
+     
+//console.log("this is the end");
  
