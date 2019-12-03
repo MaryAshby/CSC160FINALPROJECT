@@ -154,9 +154,9 @@ console.log("only human", data);
 //called in the Promise//
 };
 
-var callAll = function(data)
+var callAll = function(geoData,data)
                {
-                return setUp(data), dogSpots(data), catSpots(data), humanSpots(data);
+                return setUp(geoData), dogSpots(data), catSpots(data), humanSpots(data);
                }
 
 //migration lines//
