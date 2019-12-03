@@ -43,9 +43,12 @@ Promise.all([dogPromise, catPromise, humPromise])
      
          
 //variables//
+var screen = {width: 1400, height: 800}
+var margins = {top: 10, right: 10, bottom: 50, left: 10}
 
-var width  = 1200;
-var height = 750;
+var width = screen.width - margins.left - margins.right;
+var height = screen.height - margins.top - margins.bottom;
+
 
 var projectionType = d3.geoMollweide()
                        .center([0, 0])
@@ -60,30 +63,33 @@ var graticule = d3.geoGraticule();
 var setUp = function(countries)
                 {
                     d3.select("svg")
+                      .append("path")
+                      .datum(graticule)
+                      .attr("class", "graticule")
+                      .attr("d", path);
+                    d3.select("svg")
+                      .append("path")
+                      .datum(graticule.outline)
+                      .attr("class", "outline")
+                      .attr("d", path);
+                    d3.select("svg")
+                      .attr("width",screen.width)
+                      .attr("height",screen.height)
+                      .attr("transform","translate(180,0)") //look at alignment issues of globe here//
+                    d3.select("svg")
                       .selectAll("path")
                       .data(countries.features)
                       .enter()
                       .append("path")
-                      .attr("d", path) //where d is the geoPath data//   
+                      .attr("d", path) //where d is the geoPath data// 
                       .append("g")
                       .attr("id","map")
                       .append("title")
-                      .attr("id", "lLabel")
                       .text(function(d)
                                    {
                                     return ("Breeds: " + d.admin)      //CHANGE TO NAMES OF BREEDS//   
                                    })
-                    d3.select("svg")
-                    .append("path")
-                        .datum(graticule)
-                        .attr("class", "graticule")
-                        .attr("d", path);
-                    d3.select("svg")
-                    .append("path")
-                    .datum(graticule.outline)
-                    .attr("class", "outline")
-                    .attr("d", path);
-    
+                    
 console.log("land", countries.features);
                }
 
@@ -178,42 +184,10 @@ var humanSpots = function(data)
                   .text(function(d)
                      {
                         return ("Human: ")         
-                     })
-console.log("only human", data);
-};
+                     });
+}
 
 
 
-//migration lines//
-
-var route = {
-  type: "LineString",
-  coordinates: [
-    [31.791702,-7.09262],  [26.086466,-28.766591]
-  ]
-};
-
-var humanLines = function(data)
-                 {
-                 d3.select("svg")
-                      .selectAll("path")
-                      .data(data[2])
-                      .enter()
-                      .append("path")
-                      .attr("d", style("stroke-width", 7))
-			          .attr('d', function(d) 
-                           {
-				            return path 
-				               type:"LineString",
-				               coordinates [[+d.hLon, +d.hLat][0],[+d.hLon, +d.hLat][1]]
-                            })
-                      .append("g")
-                      .attr("id","map")
-                      .append("title")
-                      .text(function(d)
-                                   {
-                                    return ("mtDNA Human Migration"+ d.hName)         
-                                   })};
-    
 console.log("this is the end");
  
