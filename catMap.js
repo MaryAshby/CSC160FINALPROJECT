@@ -156,7 +156,7 @@ console.log("only human", data);
 
 var callAll = function(data)
                {
-                return dogSpots(data), catSpots(data), humanSpots(data);
+                return setUp(data), dogSpots(data), catSpots(data), humanSpots(data);
                }
 
 //migration lines//
