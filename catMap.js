@@ -204,8 +204,10 @@ var dogPromise = d3.csv("Dogs.csv");
 var humPromise = d3.csv("human.csv"); 
       
 var catPromise = d3.csv("Cats.csv"); 
+
+var catDogPromise = d3.csv("CatDog.csv");
        
-Promise.all([mapPromise, dogPromise, humPromise, catPromise])
+Promise.all([mapPromise, catDogPromise, humPromise])
        .then(function(data)
                    {
                      setBanner("Domestication of Cats and Dogs"); 
