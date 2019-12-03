@@ -199,15 +199,13 @@ var drawCat = function(catRoutes)
 
 var mapPromise = d3.json("custom.geo.json");
 
-var dogPromise = d3.csv("Dogs.csv"); 
+var dogPromise = d3.csv("Dog.csv"); 
         
 var humPromise = d3.csv("human.csv"); 
       
-var catPromise = d3.csv("Cats.csv"); 
-
-var catDogPromise = d3.csv("CatDog.csv");
+var catPromise = d3.csv("Cat.csv"); 
        
-Promise.all([mapPromise, catDogPromise, humPromise])
+Promise.all([mapPromise, dogPromise, catPromise, humPromise])
        .then(function(data)
                    {
                      setBanner("Domestication of Cats and Dogs"); 
