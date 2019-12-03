@@ -4,29 +4,6 @@ var setBanner = function(message)
                 d3.select("#banner").text(message);
                 }
 
-//Promise which includes setup call//
-
-var mapPromise = d3.json("custom.geo.json");
-
-var dogPromise = d3.csv("Dogs.csv"); 
-        
-var humPromise = d3.csv("human.csv"); 
-      
-var catPromise = d3.csv("Cats.csv"); 
-       
-Promise.all([mapPromise, dogPromise, humPromise, catPromise])
-       .then(function(value)
-                   {
-                     setBanner("Domestication of Cats and Dogs");
-                     setUp();
-    
-                   }, 
-                   function(err)
-                   {
-                     console.log("Failure is an option",err);
-                     setBanner("Data has failed to load");
-                   })
-
          
 //variables//
 
@@ -45,16 +22,17 @@ var path =   d3.geoPath()
                .projection(projectionType);
 
                    
-var setUp = function(countries, features)
+var setUp = function(countries)
 {
  var landBodies = d3.select("#gbu")
                     .selectAll("path")
+                .append("path")
                     .attr("width",screen.width)
                     .attr("height",screen.height)
                     .data(countries.features)
                     .enter()
                     .append("g")
-                    .append("path")
+                    
                     .attr("id","map")
                     .attr("d", path) //where d is the geoPath data//                  
                     .append("title")
@@ -63,11 +41,10 @@ var setUp = function(countries, features)
                         return ("Breeds: " + d.admin)      //CHANGE TO NAMES OF BREEDS//   
                         });
     
-                 return projectionType
+console.log("land");
     
 //called in the Promise//
 }
-
 
 var dogSpots = function(data)
 {
@@ -99,7 +76,7 @@ var dogSpots = function(data)
                         return "Dog Breed: " + d.dBreed
                         });
     
-// console.log("Who let the dogs out");
+console.log("Who let the dogs out");
     
 //called in the Promise//
 };
@@ -115,7 +92,7 @@ var catSpots = function(data)
                   .selectAll("circle")
                   .data(data)
                   .enter()
-                  layer3.append("circle")
+                  .append("circle")
                   .attr("cx", function(d)
                        {
                         return projectionType([+d.cLon + 2, +d.cLat + 2])[0];
@@ -135,7 +112,7 @@ var catSpots = function(data)
                         return ("Cat Breed: " + d.cBreed)           
                      });
     
-// console.log("Puuurrrrrffffeccccttttt");
+console.log("Puuurrrrrffffeccccttttt");
    
 //called in the Promise//
 };
@@ -170,12 +147,17 @@ var humanSpots = function(data)
                      {
                         return ("Human: " + d.hName)         
                      }); 
+    return spots;
     
-    
-//console.log("only human", data);
+console.log("only human", data);
     
 //called in the Promise//
 };
+
+var callAll = function(data)
+               {
+                return dogSpots(data), catSpots(data);
+               }
 
 //migration lines//
 /*var svg = d3.select("#human").append("svg")
@@ -213,7 +195,29 @@ var drawCat = function(catRoutes)
 
 //console.log(path(link));
 
+//Promise which includes setup call//
+
+var mapPromise = d3.json("custom.geo.json");
+
+var dogPromise = d3.csv("Dogs.csv"); 
+        
+var humPromise = d3.csv("human.csv"); 
+      
+var catPromise = d3.csv("Cats.csv"); 
+       
+Promise.all([mapPromise, dogPromise, humPromise, catPromise])
+       .then(function(data)
+                   {
+                     setBanner("Domestication of Cats and Dogs"); 
+                     callAll(data);
+console.log("here", data);         
+                   }, 
+                   function(err)
+                   {
+                     console.log("Failure is an option",err);
+                     setBanner("Data has failed to load");
+                   })
+   
      
-     
-//console.log("this is the end");
+console.log("this is the end");
  
