@@ -153,10 +153,13 @@ console.log("only human", data);
     
 //called in the Promise//
 };
-
-var callAll = function(geoData,data)
+var callMapData = function(geoData)
+                  {
+			  return setUp(geoData)
+		  }
+var callAll = function(data)
                {
-                return setUp(geoData), dogSpots(data), catSpots(data), humanSpots(data);
+                return dogSpots(data), catSpots(data), humanSpots(data);
                }
 
 //migration lines//
@@ -206,10 +209,12 @@ var humPromise = d3.csv("human.csv");
 var catPromise = d3.csv("Cat.csv"); 
        
 Promise.all([mapPromise, dogPromise, catPromise, humPromise])
-       .then(function(data)
+       .then(function(geoData, data)
                    {
                      setBanner("Domestication of Cats and Dogs"); 
+	             callMap(geoData);
                      callAll(data);
+	             
 console.log("here", data);         
                    }, 
                    function(err)
