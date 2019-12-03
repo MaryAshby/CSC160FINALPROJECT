@@ -4,93 +4,128 @@ var setBanner = function(message)
                 d3.select("#banner").text(message);
                 }
 
+//Promise which includes setup call//
+
+var mapPromise = d3.json("geoinfo.json")
+           mapPromise.then(function(countries, geoData)
+                   {
+                     console.log("Map here",countries);
+                     setUp(countries);
+                   }, 
+                   function(err)
+                   {
+                   console.log("Map Error",err);
+                   })
+
+var dogPromise = d3.csv("Dog.csv"); 
+        
+var humPromise = d3.csv("human.csv"); 
+      
+var catPromise = d3.csv("Cat.csv");
+
+var callAll = function(data)
+               {
+                return dogSpots(data), catSpots(data), humanSpots(data);
+               }
+       
+Promise.all([dogPromise, catPromise, humPromise])
+       .then(function(data)
+                   {
+                     setBanner("Domestication of Cats and Dogs");        
+                     callAll(data);
+	                 console.log("Spots here", data);         
+                   }, 
+                   function(err)
+                   {
+                     console.log("Failure is an option",err);
+                     setBanner("Data has failed to load");
+                   })
+     
          
 //variables//
 
-var screen  = {width: 1200, height: 750}
-var margins = {top: 10, right: 50, bottom: 50, left: 25}
-
-var width  = screen.width - margins.left - margins.right;
-var height = screen.height - margins.top - margins.bottom;
+var width  = 1200;
+var height = 750;
 
 var projectionType = d3.geoMollweide()
                        .center([0, 0])
                        .scale([225]) //scale can be adjusted//
-                       .translate([width/2,height/2]);  //center of map to line up with center of projection//              
+                       .translate([width/2,height/2]);  //center of map to line up with center of projection//            
 
-var path =   d3.geoPath()
-               .projection(projectionType);
+var path =   d3.geoPath(projectionType);
 
-                   
+var graticule = d3.geoGraticule();
+
+
 var setUp = function(countries)
-{
- var landBodies = d3.select("#gbu")
-                    .selectAll("path")
-                .append("path")
-                    .attr("width",screen.width)
-                    .attr("height",screen.height)
-                    .data(countries.features)
-                    .enter()
-                    .append("g")
-                    
-                    .attr("id","map")
-                    .attr("d", path) //where d is the geoPath data//                  
-                    .append("title")
-                    .text(function(d)
-                        {
-                        return ("Breeds: " + d.admin)      //CHANGE TO NAMES OF BREEDS//   
-                        });
+                {
+                    d3.select("svg")
+                      .selectAll("path")
+                      .data(countries.features)
+                      .enter()
+                      .append("path")
+                      .attr("d", path) //where d is the geoPath data//   
+                      .append("g")
+                      .attr("id","map")
+                      .append("title")
+                      .attr("id", "lLabel")
+                      .text(function(d)
+                                   {
+                                    return ("Breeds: " + d.admin)      //CHANGE TO NAMES OF BREEDS//   
+                                   })
+                    d3.select("svg")
+                    .append("path")
+                        .datum(graticule)
+                        .attr("class", "graticule")
+                        .attr("d", path);
+                    d3.select("svg")
+                    .append("path")
+                    .datum(graticule.outline)
+                    .attr("class", "outline")
+                    .attr("d", path);
     
-console.log("land");
-    
-//called in the Promise//
-}
+console.log("land", countries.features);
+               }
 
 var dogSpots = function(data)
-{
-    var spots = d3.select("svg")
-                  .attr("width",screen.width)
-                  .attr("height",screen.height)
-                  .append("g")
-                  .attr("id","dog")
-                  .selectAll("circle")
-                  .data(data)
-                  .enter()
-                  .append("circle")
-                  .attr("cx", function(d)
-                       {
-                        return projectionType([+d.dLon, +d.dLat])[0];
-                       })
-                  .attr("cy", function(d)
-                        {
-                         return projectionType([+d.dLon, +d.dLat])[1];
-                        })
-                  .attr("r", 3)
-                  .style("fill", "#fcf340")
-                  .style("stroke", "#fcf340")
-                  .style("stroke-width", 0.75)
-                  .style("opacity",1)
-                  .append("title")
-                  .text(function(d)
-                       { 
-                        return "Dog Breed: " + d.dBreed
-                        });
+                {
+                    d3.select("svg")
+                      .selectAll("circle")
+                      .data(data[0])
+                      .enter()
+                      .append("circle")
+                      .attr("cx", function(d)
+                                  {
+                                    return projectionType([+d.dLon, +d.dLat])[0];
+                                    })
+                      .attr("cy", function(d)
+                                  {
+                                    return projectionType([+d.dLon, +d.dLat])[1];
+                                  })
+                            .attr("r", 5)
+                            .style("fill", "#fcf340")
+                            .style("stroke", "#fcf340")
+                            .style("stroke-width", 0.75)
+                            .style("opacity",1)
+                            .append("title")
+                            .attr("id", "dLabel")
+                            .text(function(d)
+                                  { 
+                                   return "Dog Breed: " + d.dBreed
+                                  });
     
-console.log("Who let the dogs out");
+console.log("Who let the dogs out", data);
     
-//called in the Promise//
-};
+                };
 
 
 var catSpots = function(data)
 {
-    var spots = d3.select("#svg")
-                  .attr("width",screen.width)
-                  .attr("height",screen.height)
+    var spots = d3.select("svg")
                   .append("g")
                   .attr("id","cat")
                   .selectAll("circle")
-                  .data(data)
+                  .data(data[1])
                   .enter()
                   .append("circle")
                   .attr("cx", function(d)
@@ -110,23 +145,20 @@ var catSpots = function(data)
                   .text(function(d)
                      {
                         return ("Cat Breed: " + d.cBreed)           
-                     });
+                     })
+                  ;
     
 console.log("Puuurrrrrffffeccccttttt");
-   
-//called in the Promise//
 };
 
 
 var humanSpots = function(data)
 {
-    var spots = d3.select("#svg")
-                  .attr("width",screen.width)
-                  .attr("height",screen.height)
+    var spots = d3.select("svg")
                   .append("g")
                   .attr("id","human")
                   .selectAll("circle")
-                  .data(data)
+                  .data(data[2])
                   .enter()
                   .append("circle")
                   .attr("cx", function(d)
@@ -145,84 +177,43 @@ var humanSpots = function(data)
                   .append("title")
                   .text(function(d)
                      {
-                        return ("Human: " + d.hName)         
-                     }); 
-    return spots;
-    
+                        return ("Human: ")         
+                     })
 console.log("only human", data);
-    
-//called in the Promise//
 };
-var callMapData = function(geoData)
-                  {
-			  return setUp(geoData)
-		  }
-var callAll = function(data)
-               {
-                return dogSpots(data), catSpots(data), humanSpots(data);
-               }
+
+
 
 //migration lines//
-/*var svg = d3.select("#human").append("svg")
-    .attr("width", width)
-    .attr("height", height);
 
-var cook = {"type": "LineString", "coordinates": [[-4.1397, 50.3706], [-43.2436, -22.9083] , [-67.2717, -55.9797] , [-149.4500, -17.6667], [172.1936, -41.4395] ,[151.1667, -34] , [147.70, -18.3] ,[106.7, -6], [18.4719, -34.3], [-5,-15], [-25.6, 37.7],[-4.1397, 50.3706]] }
+var route = {
+  type: "LineString",
+  coordinates: [
+    [31.791702,-7.09262],  [26.086466,-28.766591]
+  ]
+};
 
-svg.selectAll(".geojson").data([cook])
-.enter()
-.append("path")
-.attr("class","geojson")
-.attr("d", path);
-
-
-/*
-var drawCat = function(catRoutes) 
-              {				
-	 var cMigPath = d3.select("#container")
-                     .selectAll(".catRoute")
-			         .data(routes)
-			         .enter()
-			         .append("path")
-			         .attr("class","route")
-			         .style("stroke-width", 7)
-			         .attr('d', function(d) 
+var humanLines = function(data)
+                 {
+                 d3.select("svg")
+                      .selectAll("path")
+                      .data(data[2])
+                      .enter()
+                      .append("path")
+                      .attr("d", style("stroke-width", 7))
+			          .attr('d', function(d) 
                            {
 				            return path 
 				               type:"LineString",
-				               coordinates [[+d.cLon, +d.cLat],[+d.cMigLon, +d.cMigLat]]
-                            })}
-               
-*/
-//Set up starts and destinations//   
-
-//console.log(path(link));
-
-//Promise which includes setup call//
-
-var mapPromise = d3.json("custom.geo.json");
-
-var dogPromise = d3.csv("Dog.csv"); 
-        
-var humPromise = d3.csv("human.csv"); 
-      
-var catPromise = d3.csv("Cat.csv"); 
-       
-Promise.all([mapPromise, dogPromise, catPromise, humPromise])
-       .then(function(geoData, data)
-                   {
-                     setBanner("Domestication of Cats and Dogs"); 
-	             callMap(geoData);
-                     callAll(data);
-	             
-console.log("here", data);         
-                   }, 
-                   function(err)
-                   {
-                     console.log("Failure is an option",err);
-                     setBanner("Data has failed to load");
-                   })
-   
-     
+				               coordinates [[+d.hLon, +d.hLat][0],[+d.hLon, +d.hLat][1]]
+                            })
+                      .append("g")
+                      .attr("id","map")
+                      .append("title")
+                      .text(function(d)
+                                   {
+                                    return ("mtDNA Human Migration"+ d.hName)         
+                                   })};
+    
 console.log("this is the end");
  
