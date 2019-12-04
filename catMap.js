@@ -65,17 +65,17 @@ var setUp = function(countries)
                     d3.select("svg")
                       .append("path")
                       .datum(graticule)
-                      .attr("class", "graticule")
+                      .attr("id", "graticule")
                       .attr("d", path);
                     d3.select("svg")
                       .append("path")
                       .datum(graticule.outline)
-                      .attr("class", "outline")
+                      .attr("id", "outline")
                       .attr("d", path);
                     d3.select("svg")
                       .attr("width",screen.width)
                       .attr("height",screen.height)
-                      .attr("transform","translate(180,0)") //look at alignment issues of globe here//
+                     // .attr("transform","translate(180,0)") //look at alignment issues of globe here//
                     d3.select("svg")
                       .selectAll("path")
                       .data(countries.features)
