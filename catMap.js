@@ -25,7 +25,7 @@ var catPromise = d3.csv("Cat.csv");
 
 var callAll = function(data)
                {
-                return dogSpots(data), catSpots(data), humanSpots(data);
+                return dogSpots(data), catSpots(data), humanSpots(data), legend(data);
                }
        
 Promise.all([dogPromise, catPromise, humPromise])
@@ -44,21 +44,24 @@ Promise.all([dogPromise, catPromise, humPromise])
          
 //variables//
 var screen = {width: 1400, height: 800}
-var margins = {top: 10, right: 10, bottom: 50, left: 10}
 
-var width = screen.width - margins.left - margins.right;
-var height = screen.height - margins.top - margins.bottom;
+
+var width = screen.width;
+var height = screen.height;
 
 
 
 var projectionType = d3.geoMollweide()
-                       .center([0, 0])
-                       .scale([150]) //scale can be adjusted//
+                       .center([10, -25]) //look at alignment issues of globe here//
+                       .scale([180]) //scale can be adjusted//
                        .translate([width/2,height/2]);  //center of map to line up with center of projection//            
 
 var path =   d3.geoPath(projectionType);
 
 var graticule = d3.geoGraticule();
+
+
+//data drawing//
             
 var setUp = function(countries)
                 {
@@ -67,15 +70,15 @@ var setUp = function(countries)
                       .datum(graticule)
                       .attr("id", "graticule")
                       .attr("d", path);
-                    d3.select("svg")
+                   /* d3.select("svg")
                       .append("path")
                       .datum(graticule.outline)
                       .attr("id", "outline")
-                      .attr("d", path);
+                      .attr("d", path);*/
                     d3.select("svg")
-                      .attr("width",screen.width)
-                      .attr("height",screen.height)
-                     /* .attr("transform","translate(0,0)") //look at alignment issues of globe here//*/
+                      .attr("width", width)
+                      .attr("height", height)
+                      .attr("transform","translate(0,0)") 
                     d3.select("svg")
                       .selectAll("path")
                       .data(countries.features)
@@ -182,38 +185,57 @@ var humanSpots = function(data)
                   .text(function(d)
                      {
                         return ("Human: " + d.hName)         
-                     })};
+                     })
+};
 
-/*//zoom on click//
-var clicked = function(d) 
-             {
-                var x, y, k;
-                 if (d && centered !== d) 
-                 {
-                var centroid = path.centroid(d);
-                           x = centroid[0];
-                           y = centroid[1];
-                           k = 4;
-                    centered = d;
-                 }
-                 else 
-                 {
-                    x = width / 2;
-                    y = height / 2;
-                    k = 1;
-             centered = null;
+/*//zoom//
+
+//zoom variables//
+
+var zoom = d3.behavior.zoom()              
+             .translate([0,0])
+             .scale(1)
+             .scaleExtent([1,8])
+             .on("zoom", zoomed);
+
+var zmap = d3.select("svg")
+             .append("rect")
+             .attr("id", "zmap")
+             .attr("width", width)
+             .attr("height", height)
+             .call(zoom) 
+
+
+var zoomed = function(d)
+                {
+                 features.attr("transform", "translate("+ d3.event.translate +")scale(" + d3.event.scale + ")");
+                 features.select(".subregion").style("stroke-width", 1.5 / d3.event.scale + "px");    
                 }
+                */
 
-d3.select("svg").selectAll("path")
-      .classed("active", centered && function(d) { return d === centered; });
+//make Legend/
 
-  d3.select("svg").transition()
-      .duration(750)
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-      .style("stroke-width", 1.5 / k + "px");
-    console.log("zoom");
-}*/
+var legend = function(data)
+{
+             d3.select("#legend")
+               .selectAll("circle")
+               .enter()
+               .append("circle")
+               .attr("cx", 780)
+               .attr("cy", 200)
+               .attr("r", 50)
+               .style("fill", "#7fff00")
+//labels//
+              
+               .append("text")
+      	       .attr("x", 24)
+      	       .attr("y", 9)
+      	       .text("Human");
+    
+    console.log("legend", data);
+    
 
+}
 
 console.log("this is the end");
  
