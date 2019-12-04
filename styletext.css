@@ -1,1 +1,15 @@
+body
+{
+  width: 800px;
+  background-color: #75787b;
+  color: #000000;
+  font-family: Arial;
+  font-size: 18px;
+  padding-left: 20px;
+}
 
+h1, h2, h3
+{
+  font-family: Bookman;
+  text-align: center;
+}
