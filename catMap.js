@@ -50,16 +50,16 @@ var width = screen.width - margins.left - margins.right;
 var height = screen.height - margins.top - margins.bottom;
 
 
+
 var projectionType = d3.geoMollweide()
                        .center([0, 0])
-                       .scale([225]) //scale can be adjusted//
+                       .scale([150]) //scale can be adjusted//
                        .translate([width/2,height/2]);  //center of map to line up with center of projection//            
 
 var path =   d3.geoPath(projectionType);
 
 var graticule = d3.geoGraticule();
-
-
+            
 var setUp = function(countries)
                 {
                     d3.select("svg")
@@ -75,22 +75,20 @@ var setUp = function(countries)
                     d3.select("svg")
                       .attr("width",screen.width)
                       .attr("height",screen.height)
-                     // .attr("transform","translate(180,0)") //look at alignment issues of globe here//
+                     /* .attr("transform","translate(0,0)") //look at alignment issues of globe here//*/
                     d3.select("svg")
                       .selectAll("path")
                       .data(countries.features)
                       .enter()
                       .append("path")
-                      .attr("d", path) //where d is the geoPath data// 
-                      .append("g")
-                      .attr("id","map")
-                      .append("title")
-                      .text(function(d)
+                      .attr("d", path) //where d is the geoPath data//
+                     /* .append("title")
+                    .text(function(d)
                                    {
                                     return ("Breeds: " + d.admin)      //CHANGE TO NAMES OF BREEDS//   
-                                   })
+                                   })*/
                     
-console.log("land", countries.features);
+//console.log("land", countries.features);
                }
 
 var dogSpots = function(data)
@@ -108,11 +106,11 @@ var dogSpots = function(data)
                                   {
                                     return projectionType([+d.dLon, +d.dLat])[1];
                                   })
-                            .attr("r", 5)
+                            .attr("r", 3)
                             .style("fill", "#fcf340")
                             .style("stroke", "#fcf340")
                             .style("stroke-width", 0.75)
-                            .style("opacity",1)
+                            .style("opacity",0.75)
                             .append("title")
                             .attr("id", "dLabel")
                             .text(function(d)
@@ -120,7 +118,7 @@ var dogSpots = function(data)
                                    return "Dog Breed: " + d.dBreed
                                   });
     
-console.log("Who let the dogs out", data);
+//console.log("Who let the dogs out", data);
     
                 };
 
@@ -142,11 +140,11 @@ var catSpots = function(data)
                         {
                          return projectionType([+d.cLon +2, +d.cLat +2])[1];
                         })
-                  .attr("r",4)
+                  .attr("r",3)
                   .style("fill", "#0310ea")
                   .style("stroke", "#0310ea")
                   .style("stroke-width", 0.75)
-                  .style("opacity", 1)
+                  .style("opacity", 0.75)
                   .append("title")
                   .text(function(d)
                      {
@@ -179,14 +177,42 @@ var humanSpots = function(data)
                   .style("fill", "#7fff00")
                   .style("stroke", "#7fff00")
                   .style("stroke-width", 0.75)
-                  .style("opacity", 1)
+                  .style("opacity", 0.75)
                   .append("title")
                   .text(function(d)
                      {
-                        return ("Human: ")         
-                     });
-}
+                        return ("Human: " + d.hName)         
+                     })};
 
+/*//zoom on click//
+var clicked = function(d) 
+             {
+                var x, y, k;
+                 if (d && centered !== d) 
+                 {
+                var centroid = path.centroid(d);
+                           x = centroid[0];
+                           y = centroid[1];
+                           k = 4;
+                    centered = d;
+                 }
+                 else 
+                 {
+                    x = width / 2;
+                    y = height / 2;
+                    k = 1;
+             centered = null;
+                }
+
+d3.select("svg").selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+  d3.select("svg").transition()
+      .duration(750)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
+    console.log("zoom");
+}*/
 
 
 console.log("this is the end");
