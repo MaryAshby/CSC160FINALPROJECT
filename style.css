@@ -1,30 +1,47 @@
 body
 {
-  width: 100%;
+  width: 1200px;
+  height: 1000px;
   background-color: #000000;
-  color: #AEA578;
+  color: #75787b;
   font-family: Arial;
   font-size: 18px;
   padding-left: 10px;
 }
 
-h1, h3, p
+h1, h3
+{
+  font-family: Bookman;
+  text-align: center;
+  padding-left: 75px;
+}
+
+p
 {
   font-family: Bookman;
   text-align: center;
 }
+
+#behave
+{
+    width: 100%;
+    height: 600px;
+    float: right;
+}
  
 #legend
 {
-    width: 100%;
-    height: 200px;
-    background-color: #EA9A47;
+    width: 10%;
+    height: 600px;
+    background-color: #75787b;
     padding: 20px;
+    border-radius: 25px;
+    float: clear left;
 }
 
 #gbu
 {
-      fill: #447C70;
+      fill: #75787B;
       stroke: white;
       stroke-linejoin: round;
       width: 100%;
@@ -38,4 +55,25 @@ h1, h3, p
     stroke-width: 1px;
     width: 100%;
     height:600px;
+}
+
+footer
+{
+  position:fixed;
+  width:1200px;
+  height:100px;
+  padding-left:75px;
+  bottom:100px;
+}
+
+a:link
+{
+  font-family: Arial;
+  font-size: 16px;
+  background-color:  #75787b;
+  color: black;
+  padding: 14px 25px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 25px;
 }
