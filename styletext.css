@@ -13,3 +13,15 @@ h1, h2, h3
   font-family: Bookman;
   text-align: center;
 }
+
+a:link
+{
+  font-family: Arial;
+  font-size: 16px;
+  background-color:  #32577b;
+  color: black;
+  padding: 14px 25px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 25px;
+}
