@@ -6,8 +6,8 @@ var setBanner = function(message)
 
 //Promise which includes setup call//
 
-var mapPromise = d3.json("geoinfo.json")
-           mapPromise.then(function(countries, geoData)
+var mapPromise = d3.json("geofile.json")
+           mapPromise.then(function(countries)
                    {
                      console.log("Map here",countries);
                      setUp(countries);
