@@ -1,7 +1,6 @@
 body
 {
   width: 1200px;
-  height: 1000px;
   background-color: #000000;
   color: #75787b;
   font-family: Arial;
@@ -9,17 +8,11 @@ body
   padding-left: 10px;
 }
 
-h1, h3
+h1, h3, p
 {
   font-family: Bookman;
   text-align: center;
-  padding-left: 75px;
-}
-
-p
-{
-  font-family: Bookman;
-  text-align: center;
+  padding-left: 40px;
 }
 
 #behave
@@ -31,9 +24,14 @@ p
  
 #legend
 {
-    width: 10%;
-    height: 600px;
-    background-color: #75787b;
+    height: 100px;
+    width: 200px;
+    float: clear left;
+}
+
+#legend
+{
+    fill: darkgray;
     padding: 20px;
     border-radius: 25px;
     float: clear left;
@@ -59,9 +57,7 @@ p
 
 footer
 {
-  width:1200px;
   height:100px;
-  padding-left:75px;
   bottom:100px;
 }
 
