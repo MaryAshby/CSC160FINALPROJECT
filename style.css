@@ -1,10 +1,10 @@
 body
 {
   width: 1200px;
-   background-image: url("CatEyes.jpg");
- background-repeat: no-repeat;
- background-position: right top;
-    background-blend-mode:darken;
+  background-image: url("CatEyes.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-blend-mode: saturation;
   background-color: #000000;
   color: #e3e4e4;
   font-family: Arial;
@@ -13,8 +13,7 @@ body
 }
 
 h1, h3, p
-{
- 
+{ 
   font-family: Bookman;
   text-align: center;
   padding-left: 20px;
