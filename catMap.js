@@ -101,7 +101,7 @@ var dogSpots = function(data)
                                   {
                                     return projectionType([+d.dLon-0.5, +d.dLat-0.5])[1];
                                   })
-                            .attr("r", 2)
+                            .attr("r", 3)
                             .style("fill", "#fcf340")
                             .style("stroke", "#fcf340")
                             .style("stroke-width", 0.75)
@@ -135,7 +135,7 @@ var catSpots = function(data)
                         {
                          return projectionType([+d.cLon +2, +d.cLat +2])[1];
                         })
-                  .attr("r",2)
+                  .attr("r",3)
                   .style("fill", "#0310ea")
                   .style("stroke", "#0310ea")
                   .style("stroke-width", 0.75)
@@ -168,7 +168,7 @@ var humanSpots = function(data)
                         {
                          return projectionType([+d.hLon, +d.hLat])[1];
                         })
-                  .attr("r", 2)
+                  .attr("r", 3)
                   .style("fill", "#7fff00")
                   .style("stroke", "#7fff00")
                   .style("stroke-width", 0.75)
