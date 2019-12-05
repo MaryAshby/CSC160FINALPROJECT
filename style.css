@@ -4,7 +4,6 @@ body
   background-image: url("CatEyes.jpg");
   background-repeat: no-repeat;
   background-position: right top;
-  background-blend-mode: saturation;
   background-color: #000000;
   color: #e3e4e4;
   font-family: Arial;
