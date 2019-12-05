@@ -180,38 +180,35 @@ var humanSpots = function(data)
                      })
 };
 
-//zoom//
+//zoom code modified from https://bl.ocks.org/mbostock/2374239 and https://www.freecodecamp.org/news/get-ready-to-zoom-and-pan-like-a-pro-after-reading-this-in-depth-tutorial-5d963b0a153e/  but it didn't want to read the "d3.zoom()//
 
-//zoom variables//
+/*//zoom variables//
 
-var zoom = d3.behavior.zoom()             
+var zoom = d3.zoom()             
              .translate([0,0])
              .scale(1)
              .scaleExtent([1,8])
              .on("zoom", zoomed);
 
-var svg =
-                 d3.select("#behave")
-                   .append("svg")
-                   .attr("width", width)
-                   .attr("height",height)
+var svg = d3.select("#behave")
+            .append("svg")
+            .attr("width", width)
+            .attr("height",height)
+
 var features= svg.append("g")  
-                   svg.append("rect")
-                    .attr("id","overlay")
-                   .attr("width", width)
-                   .attr("height",height)
-
-                    .call(zoom);
+                 .append("rect")
+                 .attr("id","overlay")
+                 .attr("width", width)
+                 .attr("height",height)
+                 .call(zoom);
                 
-
-
 var zoomed = function(features)
                 {
                  features.attr("transform", "translate("+ d3.event.translate +")scale(" + d3.event.scale + ")");
-                 features.select(".subregion").style("stroke-width", 1.5 / d3.event.scale + "px");    
+                 features.select(".features").style("stroke-width", 1.5 / d3.event.scale + "px");    
                 }
                 
-d3.select(self.frameElement).style("height", height + "px");
+d3.select(self.frameElement).style("height", height + "px");*/
 
 
 //make Legend//
@@ -249,5 +246,32 @@ var legend = function(data)
 
 }
 
+/*//routes code modified from http://bl.ocks.org/Andrew-Reid/35d89fbcfbcfe9e819908ea77fc5bef6  failed to calculate routes correctly//
+
+var line = d3.line().curve(d3.curveBasis);
+
+var routes =d3.select("svg")
+             .selectAll(".route")
+			.transition()
+			.duration(1000)
+			.attr("stroke-dashoffset",  function() { return -this.getTotalLength(); })
+			.transition().duration(0).remove();
+
+
+            routes.forEach(function(d,i)
+              {
+                var routePath=svg.append("path")
+                                 .attr("d", line([projectionType[(d.hLon), (d.hLat)[0], projectionType(d.hLon, hLat)[1]]])
+                                 .attr("class", d.hLon.replace(" ","-")+" "+ "route")
+                                 .attr("stroke-opacity", 1)
+                                 .attr("stroke-width", 1));
+          
+                var totalLength=routePath.node().getTotalLength() +10; routePath
+                                 .attr("stroke-dasharray", totalLength + " " + totalLength)
+                                 .attr("stroke-dashoffset", totalLength)
+                                 .transition()
+					             .duration(2000)
+					             .attr("stroke-dashoffset", 0);
+})*/
 //console.log("this is the end");
  
