@@ -45,11 +45,8 @@ Promise.all([dogPromise, catPromise, humPromise])
 //variables//
 var screen = {width: 1400, height: 800}
 
-
 var width = screen.width;
 var height = screen.height;
-
-
 
 var projectionType = d3.geoMollweide()
                        .center([10, -25]) //look at alignment issues of globe here//
@@ -214,26 +211,36 @@ var zoomed = function(d)
                 */
 
 //make Legend/
+var labels = ["Human", "Dog", "Cat"]
+
+var color = ["#7fff00", "#fcf340", "0310ea"]
+
+var size = 20
 
 var legend = function(data)
 {
              d3.select("#legend")
                .selectAll("circle")
+               .data(color)
                .enter()
                .append("circle")
-               .attr("cx", 780)
-               .attr("cy", 200)
-               .attr("r", 50)
-               .style("fill", "#7fff00")
-//labels//
-              
+               .attr("cx", 50)
+               .attr("cy", function(d,i){return 100 + i*(size+10)})
+               .attr("r", 10)
+               .style("fill", function(d){return d})
+
+             d3.select("#legend")
+               .selectAll("labels")
+               .data(labels)
+               .enter()
                .append("text")
-      	       .attr("x", 24)
-      	       .attr("y", 9)
-      	       .text("Human");
-    
-    console.log("legend", data);
-    
+               .attr("x", 75)
+               .attr("y", function(d,i){ return 100 + i*32})
+               .style("fill", "darkgray")
+               .text(function(d){ return d})
+               .attr("text-anchor", "left")
+               .style("alignment-baseline", "middle");
+
 
 }
 
