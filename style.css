@@ -10,6 +10,8 @@ body
 
 h1, h3, p
 {
+  background-image: "CatEyes.jpg";
+  background-repeat: "no repeat";
   font-family: Bookman;
   text-align: center;
   padding-left: 20px;
