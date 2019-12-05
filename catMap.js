@@ -9,7 +9,7 @@ var setBanner = function(message)
 var mapPromise = d3.json("geofile.json")
            mapPromise.then(function(countries)
                    {
-                     console.log("Map here",countries);
+                     console.log("Map here");
                      setUp(countries);
                    }, 
                    function(err)
@@ -82,11 +82,6 @@ var setUp = function(countries)
                       .enter()
                       .append("path")
                       .attr("d", path) //where d is the geoPath data//
-                     /* .append("title")
-                    .text(function(d)
-                                   {
-                                    return ("Breeds: " + d.admin)      //CHANGE TO NAMES OF BREEDS//   
-                                   })*/
                     
 //console.log("land", countries.features);
                }
@@ -100,13 +95,13 @@ var dogSpots = function(data)
                       .append("circle")
                       .attr("cx", function(d)
                                   {
-                                    return projectionType([+d.dLon, +d.dLat])[0];
+                                    return projectionType([+d.dLon-0.5, +d.dLat-0.5])[0];
                                     })
                       .attr("cy", function(d)
                                   {
-                                    return projectionType([+d.dLon, +d.dLat])[1];
+                                    return projectionType([+d.dLon-0.5, +d.dLat-0.5])[1];
                                   })
-                            .attr("r", 3)
+                            .attr("r", 2)
                             .style("fill", "#fcf340")
                             .style("stroke", "#fcf340")
                             .style("stroke-width", 0.75)
@@ -140,7 +135,7 @@ var catSpots = function(data)
                         {
                          return projectionType([+d.cLon +2, +d.cLat +2])[1];
                         })
-                  .attr("r",3)
+                  .attr("r",2)
                   .style("fill", "#0310ea")
                   .style("stroke", "#0310ea")
                   .style("stroke-width", 0.75)
@@ -152,7 +147,7 @@ var catSpots = function(data)
                      })
                   ;
     
-console.log("Puuurrrrrffffeccccttttt");
+//console.log("Puuurrrrrffffeccccttttt");
 };
 
 
@@ -173,7 +168,7 @@ var humanSpots = function(data)
                         {
                          return projectionType([+d.hLon, +d.hLat])[1];
                         })
-                  .attr("r", 3)
+                  .attr("r", 2)
                   .style("fill", "#7fff00")
                   .style("stroke", "#7fff00")
                   .style("stroke-width", 0.75)
@@ -185,32 +180,42 @@ var humanSpots = function(data)
                      })
 };
 
-/*//zoom//
+//zoom//
 
 //zoom variables//
 
-var zoom = d3.behavior.zoom()              
+var zoom = d3.behavior.zoom()             
              .translate([0,0])
              .scale(1)
              .scaleExtent([1,8])
              .on("zoom", zoomed);
 
-var zmap = d3.select("svg")
-             .append("rect")
-             .attr("id", "zmap")
-             .attr("width", width)
-             .attr("height", height)
-             .call(zoom) 
+var svg =
+                 d3.select("#behave")
+                   .append("svg")
+                   .attr("width", width)
+                   .attr("height",height)
+var features= svg.append("g")  
+                   svg.append("rect")
+                    .attr("id","overlay")
+                   .attr("width", width)
+                   .attr("height",height)
+
+                    .call(zoom);
+                
 
 
-var zoomed = function(d)
+var zoomed = function(features)
                 {
                  features.attr("transform", "translate("+ d3.event.translate +")scale(" + d3.event.scale + ")");
                  features.select(".subregion").style("stroke-width", 1.5 / d3.event.scale + "px");    
                 }
-                */
+                
+d3.select(self.frameElement).style("height", height + "px");
 
-//make Legend/
+
+//make Legend//
+
 var labels = ["Human", "Dog", "Cat"]
 
 var color = ["#7fff00", "#fcf340", "0310ea"]
@@ -244,5 +249,5 @@ var legend = function(data)
 
 }
 
-console.log("this is the end");
+//console.log("this is the end");
  
