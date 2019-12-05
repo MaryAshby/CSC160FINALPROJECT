@@ -3,7 +3,8 @@ body
   width: 1200px;
    background-image: url("CatEyes.jpg");
  background-repeat: no-repeat;
- background-position: right top;
+ background-position: center top;
+  background-size: 1000px 800px;
   background-color: #000000;
   color: #75787b;
   font-family: Arial;
