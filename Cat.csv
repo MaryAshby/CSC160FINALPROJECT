@@ -1,33 +1,34 @@
-cBreed,cLat,cLon
-RussianWhiteBlackandTabby,-25.274398,133.775136
+cBreed,cLat,cLon,
+Russian White Black and Tabby,-25.274398,133.775136
 Brazilian Shorthair,-14.235004,-51.92528
 Burmese,21.95451,96.093292
-Cymric,56.130366,-106.346771
-Foldex,56.130366,-106.346771
-Sphynx,56.130366,-106.346771
-Tonkinese,56.130366,-106.346771
+Cymric,58,-107
+Foldex,56,-105
+Sphynx,54,-103
+Tonkinese,52,-101
 Cyprus,35.126413,33.429859
 Egyptian Mau,26.820553,30.802498
-Cornish Rex,55.378051,-3.435973
-Devon Rex,55.378051,-3.435973
+Cornish Rex,55,-3
+Devon Rex,57,-1
 Abyssinian,9.145,40.489673
 Siamese (modern),55.378051,-3.435973
 European Shorthair,61.92411,25.748151
-Birman,46.227638,2.213749
-Chartreux,46.227638,2.213749
-Chausie,46.227638,2.213749
+Birman,46,2
+Chartreux,48,4
+Chausie,44,6
 German Rex,51.165691,10.451526
 Aegean,39.074208,21.824312
 Persian (traditional),32.427908,53.688046
 Manx,54.145,-4.482
-Japanese Bobtail,36.204824,138.252924
-Kurilian Bobtail,36.204824,138.252924
+Japanese Bobtail,36,138.252924
+Kurilian Bobtail,34,138.252924
+Kurilian Bobtail,38,138.252924
 Sokoke,-0.023559,37.906193
 Norwegian Forest Cat,60.472024,8.468946
-Karelian Bobtail,61.52401,105.318756
-Mekong Bobtail,61.52401,105.318756
-Russian Blue,61.52401,105.318756
-Siberian,61.52401,105.318756
+Karelian Bobtail,61,105
+Mekong Bobtail,63,103
+Russian Blue,65,107
+Siberian,60,110
 Scottish Fold,56.913689,-4.162926
 Somali,45.302026,2.046504
 Khao Manee,15.870032,100.992541
@@ -35,38 +36,38 @@ Korat,15.870032,100.992541
 Siamese (traditional),15.870032,100.992541
 Turkish Angora,38.963745,35.243322
 Turkish Van,38.963745,35.243322
-British Longhair,55.378051,-3.435973
-British Shorthair,55.378051,-3.435973
-Burmilla,55.378051,-3.435973
-Havana Brown,55.378051,-3.435973
-Himalayan,55.378051,-3.435973
-American Bobtail,37.09024,-95.712891
-American Curl,37.09024,-95.712891
-American Shorthair,37.09024,-95.712891
-American Wirehair,37.09024,-95.712891
-Balinese,37.09024,-95.712891
-Bengal,37.09024,-95.712891
-Bombay,37.09024,-95.712891
-California Spangled,37.09024,-95.712891
-Chantilly-Tiffany,37.09024,-95.712891
-Exotic Shorthair,37.09024,-95.712891
-Javanese,37.09024,-95.712891
-LaPerm,37.09024,-95.712891
-Lykoi,37.09024,-95.712891
-Maine Coon,37.09024,-95.712891
-Minskin,37.09024,-95.712891
-Munchkin,37.09024,-95.712891
-Nebelung,37.09024,-95.712891
-Ocicat,37.09024,-95.712891
-Ojos Azules,37.09024,-95.712891
-Oregon Rex,37.09024,-95.712891
-Pixie-bob,37.09024,-95.712891
-Ragamuffin,37.09024,-95.712891
-Savannah,37.09024,-95.712891
-Selkirk Rex,37.09024,-95.712891
-Serengeti,37.09024,-95.712891
-Siamese (modern),37.09024,-95.712891
-Singapura,37.09024,-95.712891
-Snowshoe,37.09024,-95.712891
-York Chocolate,37.09024,-95.712891
+British Longhair,55,-3
+British Shorthair,57,-2
+Burmilla,56,-1
+Havana Brown,54,-4
+Himalayan,53,-5
+American Bobtail,38.09024,-95.712891
+American Curl,39.09024,-101.712891
+American Shorthair,40.09024,-103.712891
+American Wirehair,42.09024,-105.712891
+Balinese,39.09024,-88.712891
+Bengal,33.09024,-89.712891
+Bombay,32.09024,-95.712891
+California Spangled,40.09024,-125.712891
+Chantilly-Tiffany,32.09024,-95.712891
+Exotic Shorthair,33.09024,-95.712891
+Javanese,34.09024,-95.712891
+LaPerm,35.09024,-95.712891
+Lykoi,36.09024,-95.712891
+Maine Coon,37.09024,-80.712891
+Minskin,33.09024,-95.712891
+Munchkin,32.09024,-95.712891
+Nebelung,31.09024,-95.712891
+Ocicat,37.09024,-100.712891
+Ojos Azules,28.09024,-105.712891
+Oregon Rex,39.09024,-105.712891
+Pixie-bob,41.09024,-95.712891
+Ragamuffin,38.09024,-95.712891
+Savannah,31.09024,-90.712891
+Selkirk Rex,40,-100
+Serengeti,39,-99
+Siamese (modern),38.0,-98
+Singapura,37.2,-97
+Snowshoe,36,-96
+York Chocolate,35.0,-94
 1st Felis silvestris lybica,-28.766591,26.086466
